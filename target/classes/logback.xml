@@ -1,0 +1,77 @@
+
+<configuration >
+
+    <property name="LOG_HOME" value="logs" />
+    <property name="LOG_FILE_NAME" value="/crawler4j.log" />
+    <property name="DOCS_INFO_FILE_NAME" value="/docsInfo.log" />
+    <property name="SECTIONS_FILE_NAME" value="/sections.log" />
+    <property name="TAGS_FILE_NAME" value="/tags.log" />
+    <property name="SOURCES_FILE_NAME" value="/sources.log" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{HH:mm:ss} %-5level [%thread] - [%logger{0}]- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/${LOG_FILE_NAME}</file>
+        <encoder>
+            <pattern>%date %-5level [%thread] - [%logger] - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="docsInfo.file" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/${DOCS_INFO_FILE_NAME}</file>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="sections.file" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/${SECTIONS_FILE_NAME}</file>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="tags.file" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/${TAGS_FILE_NAME}</file>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="sources.file" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/${SOURCES_FILE_NAME}</file>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.shadialian.docsInfo" >
+        <level value="info" />
+        <appender-ref ref="docsInfo.file" />
+    </logger>
+    
+    <logger name="com.shadialian.tags" >
+        <level value="info" />
+        <appender-ref ref="tags.file" />
+    </logger>
+    
+    <logger name="com.shadialian.sections" >
+        <level value="info" />
+        <appender-ref ref="sections.file" />
+    </logger>
+    
+    <logger name="com.shadialian.sources" >
+        <level value="info" />
+        <appender-ref ref="sources.file" />
+    </logger>
+    
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <!--<appender-ref ref="FILE" />-->
+    </root>
+
+</configuration>
