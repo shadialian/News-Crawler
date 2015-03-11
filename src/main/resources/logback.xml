@@ -7,6 +7,7 @@
     <property name="SECTIONS_FILE_NAME" value="/sections.log" />
     <property name="TAGS_FILE_NAME" value="/tags.log" />
     <property name="SOURCES_FILE_NAME" value="/sources.log" />
+    <property name="URLS_FILE_NAME" value="/urls.log" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -48,6 +49,13 @@
             <pattern>%msg%n</pattern>
         </encoder>
     </appender>
+    
+    <appender name="urls.file" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/${URLS_FILE_NAME}</file>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
 
     <logger name="com.shadialian.docsInfo" >
         <level value="info" />
@@ -67,6 +75,11 @@
     <logger name="com.shadialian.sources" >
         <level value="info" />
         <appender-ref ref="sources.file" />
+    </logger>
+    
+    <logger name="com.shadialian.urls" >
+        <level value="info" />
+        <appender-ref ref="urls.file" />
     </logger>
     
     <root level="INFO">
