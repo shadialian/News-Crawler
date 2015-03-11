@@ -47,6 +47,7 @@ public class NewsCrawler extends WebCrawler {
             = Pattern.compile("http://www\\.bbc\\.co\\.uk/arabic/\\w+/\\d+/\\d+/.*");
     //private static final RadixTree storedUrls = new ConcurrentRadixTree(new SmartArrayBasedNodeFactory());
     private static final Logger docsInfo = LoggerFactory.getLogger("com.shadialian.docsInfo");
+    private static final Logger urls = LoggerFactory.getLogger("com.shadialian.urls");
     private static Data data = Data.getData();
     /**
      * You should implement this function to specify whether the given url
@@ -115,6 +116,8 @@ public class NewsCrawler extends WebCrawler {
                         String tags = Arrays.toString(tagIds);
                         logger.info("URL: {}, Docid: {}, Title: {}, Date: {}, Tags: {}, Content: {}", url, docid, title, date, atags.size(), content.length());
                         docsInfo.info("{};{};{};{};{};{}", fileId , title , date , sectionId, sourceId, tags );
+                        urls.info("{};{}" , fileId , url );
+                        
                         //storedUrls.put(url, VoidValue.SINGLETON);
                     }
                 }
@@ -143,6 +146,7 @@ public class NewsCrawler extends WebCrawler {
                     String date = url.substring(start, end);
                     logger.info("URL: {}, Docid: {}, Title: {}, Date: {}, Tags: {}, Content: {}", url, docid, title, date, atags.size(), content.length());
                     docsInfo.info("{};{};{};{};{};{}", fileId , title , date , sectionId, sourceId, tags );
+                    urls.info("{};{}" , fileId , url );
                     //storedUrls.put(url, VoidValue.SINGLETON);
                 }
             }else if( STARTS_WITH_BBCARABIC.matcher(url).matches() ){
@@ -163,6 +167,7 @@ public class NewsCrawler extends WebCrawler {
                         String tags = "[]";
                         logger.info("URL: {}, Docid: {}, Title: {}, Date: {}, Tags: {}, Content: {}", url, docid, title, date, section , content.length());
                         docsInfo.info("{};{};{};{};{};{}", fileId , title , date , sectionId, sourceId, tags );
+                        urls.info("{};{}" , fileId , url );
                     }
                 }
             }
